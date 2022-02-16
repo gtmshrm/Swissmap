@@ -2,11 +2,11 @@
 
 Implementation of Google's SIMD-accerlerated Swiss Table in C
 
-Based on [CppCon 2017: Matt Kulukundis “Designing a Fast, Efficient, Cache-friendly Hash Table, Step by Step”] (https://www.youtube.com/watch?v=ncHmEUmJZf4)
+Based on [CppCon 2017: Matt Kulukundis “Designing a Fast, Efficient, Cache-friendly Hash Table, Step by Step”](https://www.youtube.com/watch?v=ncHmEUmJZf4)
 
-Requirements: SSE2 support
+Requirements: SSE2
 
-Hash function used for testing purposes: [DJB2] (http://www.cse.yorku.ca/~oz/hash.html)
+Hash function used for testing purposes: [DJB2](http://www.cse.yorku.ca/~oz/hash.html)
 
 # License
 

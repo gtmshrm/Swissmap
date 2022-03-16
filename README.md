@@ -1,6 +1,6 @@
 # Swissmap
 
-Implementation of Google's SIMD-accerlerated Swiss Table in C
+This library is a C port of Google's high-performance SwissTable hashmap.
 
 Based on [CppCon 2017: Matt Kulukundis “Designing a Fast, Efficient, Cache-friendly Hash Table, Step by Step”](https://www.youtube.com/watch?v=ncHmEUmJZf4)
 

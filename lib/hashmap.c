@@ -94,7 +94,8 @@ static bool hm_match_metadata(hm_map_t *map, hm_metadata_t meta, \
 }
 
 static bool hm_match_metadata_from(hm_map_t *map, hm_metadata_t meta, \
-        hm_hash_t *hash, size_t group, hm_metadata_t group_pos, size_t *match_idx)
+        hm_hash_t *hash, size_t group,
+        hm_metadata_t group_pos, size_t *match_idx)
 {
     hm_metadata_t match_group_pos = _tzcnt_u32(hm_probe_from(
                 group_pos, meta, map->groups[group]._ctrl));
@@ -256,7 +257,8 @@ static void hm_insert_at(hm_map_t *map, size_t group, hm_metadata_t group_pos, \
                 map, HM_EMPTY, &hash, group, group_pos, &match_idx_emp) \
             | hm_match_metadata_from(
                 map, HM_DELETED, &hash, group, group_pos, &match_idx_del)) {
-        match_idx = (match_idx_emp < match_idx_del) ? match_idx_emp : match_idx_del;
+        match_idx = (match_idx_emp < match_idx_del)
+            ? match_idx_emp : match_idx_del;
         group_pos = hm_group_pos(match_idx);
 
         ((hm_metadata_t*) &(map->groups[group]._ctrl))[group_pos] = hash.meta;
@@ -277,7 +279,8 @@ static void hm_insert_at(hm_map_t *map, size_t group, hm_metadata_t group_pos, \
 
         if (hm_match_metadata(map, HM_EMPTY, group, &match_idx_emp) \
                 | hm_match_metadata(map, HM_DELETED, group, &match_idx_del)) {
-            match_idx = (match_idx_emp < match_idx_del) ? match_idx_emp : match_idx_del;
+            match_idx = (match_idx_emp < match_idx_del)
+                ? match_idx_emp : match_idx_del;
             group_pos = hm_group_pos(match_idx);
 
             ((hm_metadata_t*) &(map->groups[group]._ctrl))[group_pos] = hash.meta;
@@ -299,9 +302,7 @@ void hm_insert(hm_map_t **map_ref, hm_key_t *key, hm_value_t *value)
         *map_ref = hm_resize((*map_ref));
 
     size_t match_idx;
-
     hm_hash_t hash = hm_hash((*map_ref), key);
-
     size_t idx = hash.pos % (*map_ref)->size;
     size_t group = hm_group(idx);
     hm_metadata_t group_pos = hm_group_pos(idx);
@@ -341,7 +342,8 @@ hm_value_t *hm_remove(hm_map_t *map, hm_key_t *key, hm_key_t **match_key_ref)
     return NULL;
 }
 
-bool hm_iterate(hm_map_t *map, size_t *idx, hm_key_t **key_ref, hm_value_t **value_ref)
+bool hm_iterate(hm_map_t *map, size_t *idx, \
+        hm_key_t **key_ref, hm_value_t **value_ref)
 {
     if (*idx > map->sentinel)
         return false;
